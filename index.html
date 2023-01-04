@@ -5,11 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <title>Snake</title>
 </head>
 
 <body>
-    <canvas id="world" height="200" width="200"></canvas>
+    <h1 id="level-title">Welcome to the Snake Game! by Din Eilie 😺</h1>
+    <div id="menu" class="container">
+        <div class="row">
+            <div type="button" id="start" class="menu btn yellow"><br><br>Start Game</div>
+            <div type="button" id="explain" class="menu btn yellow"><br><br>How to play</div>
+            <div id="info">
+                <p>
+                    Simon is a game of short-term memory skill (originally invented by Ralph H. Baer and Howard J.
+                    Morrison).<br><br>
+                    While playing series of tones and lights, the user is required to repeat the sequence.<br>
+                    If the user succeeds, the series becomes progressively longer and more complex.<br>
+                    Once the user fails the game is over.<br><br>
+                </p>
+                <h2>Difficulties:</h2><br>
+                <p>
+                    Easy - every new level the game pattern sequence will play again with flashy lights.<br><br>
+                    Medium - every new level the game pattern sequence will play again faster with dimmed
+                    lights.<br><br>
+                    Hard - every new level only the new color that has been added to the sequence will play faster
+                    with dimmed lights.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <canvas id="world" height="600" width="600"></canvas>
+    </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="snake.js"></script>
 
 </html>
