@@ -199,7 +199,7 @@ function updateApple() {
 // Draw canvas
 function draw() {
   // Background
-  pen.fillStyle = "rgb(0,0,0)";
+  pen.fillStyle = "rgb(248,249,250)";
   pen.fillRect(0, 0, bWidth, bHeight);
 
   // Snake

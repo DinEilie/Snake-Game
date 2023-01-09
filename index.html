@@ -5,68 +5,197 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Press+Start+2P"
       rel="stylesheet"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
     <title>Snake</title>
   </head>
 
   <body>
-    <!-- Game Title -->
-    <h1 id="level-title" class="text-center">Snake Game</h1>
-
-    <div id="bar">fdsa</div>
-
-    <!-- Game Menu -->
-    <div id="menu" class="container">
-      <div class="row">
-        <div type="button" id="start" class="menu btn yellow">
-          <br /><br />Start Game
+    <nav
+      class="navbar p-3 sticky-top navbar-expand-lg bg-body-tertiary border-bottom"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand"><i class="bi bi-cup-hot-fill"></i></a>
+        <a class="navbar-brand fs-2" href="/Snake-Game/index.html"
+          >Snake Game</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <button
+                class="btn btn-dark dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Coding Challenges
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li>
+                  <a class="dropdown-item" href="#">Algorithm Visualizer</a>
+                </li>
+                <li><a class="dropdown-item" href="#">Snake</a></li>
+                <li>
+                  <a class="dropdown-item" href="/Simon Game/index.html"
+                    >Simon</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <div type="button" id="explain" class="menu btn yellow">
-          <br /><br />How to play
+        <input
+          type="checkbox"
+          class="btn-check"
+          id="btn-check-outlined"
+          autocomplete="off"
+        />
+        <div class="btn-group me-2" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-dark">
+            <i class="bi bi-caret-left-fill"></i>
+          </button>
+          <button type="button" class="btn btn-dark">
+            <i class="bi bi-volume-down-fill"></i>
+          </button>
+          <button type="button" class="btn btn-dark">
+            <i class="bi bi-caret-right-fill"></i>
+          </button>
         </div>
-        <div id="info">
-          <p>
-            Snake is a sub-genre of action video games where the player
-            maneuvers the end of a growing line, often themed as a snake. The
-            player must keep the snake from colliding with both other obstacles
-            and itself, which gets harder as the snake lengthens.<br /><br />
-          </p>
-          <h2>Difficulties:</h2>
-          <br />
-          <p>
-            Easy - the game is over only when the snake's head is touching
-            itself.<br /><br />
-            Medium - the snake's speed is increased, also bad apples may
-            occur.<br /><br />
-            Hard - the game is over by touching the edges of the board.
-          </p>
+
+        <label class="btn btn-outline-dark" for="btn-check-outlined"
+          >Translate <i class="bi bi-translate"></i></label
+        ><br />
+        <div
+          class="btn-group p-2 text-end"
+          role="group"
+          aria-label="Basic radio toggle button group"
+        >
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            Difficulty
+          </button>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio1"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn btn-dark" for="btnradio1">Easy</label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio2"
+            autocomplete="off"
+          />
+          <label class="btn btn-dark" for="btnradio2">Medium</label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio3"
+            autocomplete="off"
+          />
+          <label class="btn btn-dark" for="btnradio3">Hard</label>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Game Title -->
+      <h1 id="level-title" class="text-center">Snake Game</h1>
+
+      <div id="bar">fdsa</div>
+
+      <!-- Game Menu -->
+      <div id="menu" class="container">
+        <div class="row">
+          <div type="button" id="start" class="menu btn yellow">
+            <br /><br />Start Game
+          </div>
+          <div type="button" id="explain" class="menu btn yellow">
+            <br /><br />How to play
+          </div>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <p>
+                Snake is a sub-genre of action video games where the player
+                maneuvers the end of a growing line, often themed as a snake.
+                The player must keep the snake from colliding with both other
+                obstacles and itself, which gets harder as the snake
+                lengthens.<br /><br />
+              </p>
+              <h2>Difficulties:</h2>
+              <br />
+              <p>
+                Easy - the game is over only when the snake's head is touching
+                itself.<br /><br />
+                Medium - the snake's speed is increased, also bad apples may
+                occur.<br /><br />
+                Hard - the game is over by touching the edges of the board.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Difficulty -->
+      <div id="difficulty" class="container">
+        <div class="row">
+          <div type="button" id="easy" class="menu btn yellow">
+            <br /><br />Easy 😇
+          </div>
+          <div type="button" id="medium" class="menu btn yellow">
+            <br /><br />Medium 😵
+          </div>
+          <div type="button" id="hard" class="menu btn yellow">
+            <br /><br />Hard 😈
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Game Difficulty -->
-    <div id="difficulty" class="container">
-      <div class="row">
-        <div type="button" id="easy" class="menu btn yellow">
-          <br /><br />Easy 😇
-        </div>
-        <div type="button" id="medium" class="menu btn yellow">
-          <br /><br />Medium 😵
-        </div>
-        <div type="button" id="hard" class="menu btn yellow">
-          <br /><br />Hard 😈
-        </div>
-      </div>
-    </div>
-
     <!-- Game Board -->
-    <div id="game" class="container">
-      <canvas id="world" height="480" width="640"></canvas>
+    <div id="game">
+      <canvas
+        id="world"
+        height="480"
+        width="640"
+        class="shadow border border-1"
+      ></canvas>
     </div>
 
     <!-- Footer -->
