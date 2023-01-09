@@ -9,12 +9,9 @@ var nSize = 20;
 var isOver = false;
 var lastKey = [];
 var mili = 1000;
-
-// Initialize Menu
-var difficulty;
-$("#info").slideToggle(0);
-$("#difficulty").slideToggle(0);
-$("#game").slideToggle(0);
+var difficulty = 0;
+var isPaused = false;
+$("#restart").fadeToggle(0);
 
 // Initialize Sound
 var music = new Audio("sounds/newAdventure.wav");
@@ -311,6 +308,12 @@ function draw() {
   }
 }
 
+function drawEmpty(){
+  // Background
+  pen.fillStyle = "rgb(248,249,250)";
+  pen.fillRect(0, 0, bWidth, bHeight);
+}
+
 // Play sound
 function playSound(value) {
   if (
@@ -390,103 +393,74 @@ document.addEventListener("keyup", function (event) {
 });
 
 // Update buttons by click functions
-$(".btn").click(function () {
-  playSound(this.id);
-  playPress(this.id);
+$(".game-btn").click(function () {
   if (this.id == "start") {
-    gameStart();
-  } else if (this.id == "explain") {
-    $("#info").slideToggle(200);
-  } else if (this.id == "easy") {
-    $("#difficulty").slideToggle(200);
-    $("#game").slideToggle(200);
-    difficulty = 0;
+    if (level < 1) {
+      gameStart();
+      $("#start").addClass("disabled");
+      $("#start").html('Pause <i class="bi bi-pause-fill"></i>');
+      $("#restart").fadeToggle(200);
+      $("#restart").addClass("disabled");
+    } else {
+      if (isPaused) {
+        isPaused = false;
+      } else {
+        isPaused = true;
+      }
+    }
+  } else if (this.id == "restart") {
+    isOver = true;
+    music.pause();
+    music.load();
+    playSound("over");
+    $("body").addClass("game-over");
     setTimeout(function () {
-      $("#level-title").text("Game begins in 3");
-      playSound("button");
-    }, 1200);
+      $("body").removeClass("game-over");
+    }, 200);
+    $("#level-title").text("Restarted!");
     setTimeout(function () {
-      $("#level-title").text("Game begins in 2");
-      playSound("button");
-    }, 2200);
-    setTimeout(function () {
-      $("#level-title").text("Game begins in 1");
-      playSound("button");
-    }, 3200);
-    setTimeout(function () {
-      $("#level-title").text("Go!!!");
-      playSound("portal");
-      level++;
-    }, 4200);
-    setTimeout(function () {
-      $("#level-title").text("Level " + level);
-      music.play();
-    }, 5200);
-  } else if (this.id == "medium") {
-    $("#difficulty").slideToggle(200);
-    $("#game").slideToggle(200);
-    difficulty = 1;
-    setTimeout(function () {
-      $("#level-title").text("Game begins in 3");
-      playSound("button");
-    }, 1200);
-    setTimeout(function () {
-      $("#level-title").text("Game begins in 2");
-      playSound("button");
-    }, 2200);
-    setTimeout(function () {
-      $("#level-title").text("Game begins in 1");
-      playSound("button");
-    }, 3200);
-    setTimeout(function () {
-      $("#level-title").text("Go!!!");
-      playSound("portal");
-      level++;
-    }, 4200);
-    setTimeout(function () {
-      $("#level-title").text("Level " + level);
-      music.play();
-    }, 5200);
-  } else if (this.id == "hard") {
-    $("#difficulty").slideToggle(200);
-    $("#game").slideToggle(200);
-    difficulty = 2;
-    setTimeout(function () {
-      $("#level-title").text("Game begins in 3");
-      playSound("button");
-    }, 1200);
-    setTimeout(function () {
-      $("#level-title").text("Game begins in 2");
-      playSound("button");
-    }, 2200);
-    setTimeout(function () {
-      $("#level-title").text("Game begins in 1");
-      playSound("button");
-    }, 3200);
-    setTimeout(function () {
-      $("#level-title").text("Go!!!");
-      playSound("portal");
-      level++;
-    }, 4200);
-    setTimeout(function () {
-      $("#level-title").text("Level " + level);
-      music.play();
-    }, 5200);
-  }
+      $("#level-title").text("Snake Game");
+      restartGame();
+    }, 2000);
+  } else if (this.id == "btnradio1") difficulty = 0;
+  else if (this.id == "btnradio2") difficulty = 1;
+  else if (this.id == "btnradio3") difficulty = 2;
 });
 
 // Start game
 function gameStart() {
-  $("#menu").slideToggle(200);
-  $("#info").slideUp(200);
-  $("#difficulty").slideToggle(200);
-  $("#level-title").text("Choose difficulty");
+  $("#level-title").text("Let the game begins!");
+  setTimeout(function () {
+    $("#level-title").text("Game begins in 3");
+    playSound("button");
+  }, 1200);
+  setTimeout(function () {
+    $("#level-title").text("Game begins in 2");
+    playSound("button");
+  }, 2200);
+  setTimeout(function () {
+    $("#level-title").text("Game begins in 1");
+    playSound("button");
+  }, 3200);
+  setTimeout(function () {
+    $("#level-title").text("Go!!!");
+    playSound("portal");
+    level++;
+  }, 4200);
+  setTimeout(function () {
+    $("#restart").removeClass("disabled");
+    $("#start").removeClass("disabled");
+    $("#level-title").text("Level " + level);
+    music.play();
+  }, 5200);
 }
 
 // Game over
 function gameOver() {
   music.pause();
   music.load();
+  $("#restart").addClass("disabled");
+  $("#start").addClass("disabled");
   isOver = true;
   playSound("over");
   $("body").addClass("game-over");
@@ -494,30 +468,38 @@ function gameOver() {
     $("body").removeClass("game-over");
   }, 200);
   $("#level-title").text("💀 Game Over 💀");
-
   setTimeout(function () {
     $("#level-title").text("Shall we play again?");
-    $("#game").slideToggle(200);
-    isOver = false;
-    direction = "ArrowRight";
-    speed = 175;
-    xNode = [0];
-    yNode = [0];
-    xApple = Math.floor(bWidth / nSize / 2);
-    yApple = Math.floor(bHeight / nSize / 2);
-    type = apples[0];
-    appleExist = true;
-    level = 0;
-    $("#menu").slideToggle(200);
   }, 2000);
+  setTimeout(function () {
+    restartGame();
+  }, 4000);
+}
+
+function restartGame() {
+  $("#start").removeClass("disabled");
+  $("#start").html('Start <i class="bi bi-play-fill">');
+  $("#restart").fadeToggle(200);
+  isOver = false;
+  level = 0;
+  direction = "ArrowRight";
+  speed = 175;
+  xNode = [0];
+  yNode = [0];
+  xApple = Math.floor(bWidth / nSize / 2);
+  yApple = Math.floor(bHeight / nSize / 2);
+  type = apples[0];
+  appleExist = true;
+  $("#level-title").text("Snake Game");
+  drawEmpty();
 }
 
 // Update game by 'speed' miliseconds
 var update = setInterval(function () {
-  if (level > 0 && !isOver) {
-    updateSnake(updateApple);
+  if (!isPaused && level > 0) {
+    if (!isOver) updateSnake(updateApple);
+    draw();
   }
-  draw();
 }, speed);
 
 var updateMili = setInterval(function () {
