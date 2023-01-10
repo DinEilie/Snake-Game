@@ -308,7 +308,7 @@ function draw() {
   }
 }
 
-function drawEmpty(){
+function drawEmpty() {
   // Background
   pen.fillStyle = "rgb(248,249,250)";
   pen.fillRect(0, 0, bWidth, bHeight);
@@ -316,16 +316,18 @@ function drawEmpty(){
 
 // Play sound
 function playSound(value) {
-  if (
-    (value == "apple") |
-    (value == "badApple") |
-    (value == "over") |
-    (value == "portal")
-  )
-    var audio = new Audio("sounds/" + value + ".mp3");
-  else var audio = new Audio("sounds/button.mp3");
-  audio.volume = soundVolume;
-  audio.play();
+  if (!music.muted) {
+    if (
+      (value == "apple") |
+      (value == "badApple") |
+      (value == "over") |
+      (value == "portal")
+    )
+      var audio = new Audio("sounds/" + value + ".mp3");
+    else var audio = new Audio("sounds/button.mp3");
+    audio.volume = soundVolume;
+    audio.play();
+  }
 }
 
 // Play button animation
@@ -404,11 +406,14 @@ $(".game-btn").click(function () {
     } else {
       if (isPaused) {
         isPaused = false;
+        $("#start").html('Pause <i class="bi bi-pause-fill"></i>');
       } else {
         isPaused = true;
+        $("#start").html('Resume <i class="bi bi-play-fill"></i>');
       }
     }
   } else if (this.id == "restart") {
+    $("#start").addClass("disabled");
     isOver = true;
     music.pause();
     music.load();
@@ -425,6 +430,44 @@ $(".game-btn").click(function () {
   } else if (this.id == "btnradio1") difficulty = 0;
   else if (this.id == "btnradio2") difficulty = 1;
   else if (this.id == "btnradio3") difficulty = 2;
+  else if (this.id == "up") {
+    if (musicVolume <= 0.5 && !music.muted) {
+      if (musicVolume == 0.5)
+        $("#mute").html('<i class="bi bi-volume-up-fill"></i>');
+      else $("#mute").html('<i class="bi bi-volume-down-fill"></i>');
+
+      musicVolume *= 2;
+      soundVolume *= 2;
+      music.volume = musicVolume;
+      console.log("mV=" + musicVolume + " sV=" + soundVolume);
+    }
+  } else if (this.id == "down") {
+    if (musicVolume > 0.25 && !music.muted) {
+      if (musicVolume == 1)
+        $("#mute").html('<i class="bi bi-volume-down-fill"></i>');
+      else $("#mute").html('<i class="bi bi-volume-off-fill"></i>');
+
+      musicVolume /= 2;
+      soundVolume /= 2;
+      music.volume = musicVolume;
+      console.log("mV=" + musicVolume + " sV=" + soundVolume);
+    }
+  } else if (this.id == "muteButton") {
+    if (!music.muted) {
+      $("#mute").html('<i class="bi bi-volume-mute-fill"></i>');
+      music.muted = true;
+      console.log("MUTED");
+    } else {
+      if (musicVolume == 1)
+        $("#mute").html('<i class="bi bi-volume-up-fill"></i>');
+      if (musicVolume == 0.5)
+        $("#mute").html('<i class="bi bi-volume-down-fill"></i>');
+      if (musicVolume == 0.25)
+        $("#mute").html('<i class="bi bi-volume-off-fill"></i>');
+      music.muted = false;
+      console.log("UN-MUTED");
+    }
+  }
 });
 
 // Start game
@@ -481,6 +524,7 @@ function restartGame() {
   $("#start").html('Start <i class="bi bi-play-fill">');
   $("#restart").fadeToggle(200);
   isOver = false;
+  isPaused = false;
   level = 0;
   direction = "ArrowRight";
   speed = 175;
