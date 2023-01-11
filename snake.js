@@ -398,7 +398,6 @@ document.addEventListener("keyup", function (event) {
 $(".game-btn").click(function () {
   if (this.id == "start") {
     if (level < 1) {
-      gameStart();
       $("#start").addClass("disabled");
       $("#start").html('Pause <i class="bi bi-pause-fill"></i>');
       $("#restart").fadeToggle(200);
@@ -412,8 +411,10 @@ $(".game-btn").click(function () {
         $("#start").html('Resume <i class="bi bi-play-fill"></i>');
       }
     }
+    gameStart();
   } else if (this.id == "restart") {
     $("#start").addClass("disabled");
+    $("#restart").addClass("disabled");
     isOver = true;
     music.pause();
     music.load();
