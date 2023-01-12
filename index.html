@@ -1,98 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
-    />
-    <title>Snake</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <!-- Navbar -->
-    <section>
-      <div>
-        <nav
-          class="navbar p-3 sticky-top navbar-expand-lg bg-body-tertiary border-bottom"
-        >
-          <a class="navbar-brand"><i class="bi bi-cup-hot-fill"></i></a>
-          <a
-            class="navbar-brand fs-2"
-            href="https://dineilie.github.io/Snake-Game/"
-            >Coding Challenges</a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
-                <button
-                  class="btn btn-dark dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Browse More
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li>
-                    <a class="dropdown-item" href="#">Algorithm Visualizer</a>
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="https://dineilie.github.io/Snake-Game/"
-                      >Snake</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="https://dineilie.github.io/Simon-Game/"
-                      >Simon</a
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+  <title>Snake</title>
+</head>
 
+<body>
+  <!-- Navbar -->
+  <section>
+    <div>
+      <nav class="navbar p-3 sticky-top navbar-expand-lg bg-body-tertiary border-bottom">
+        <a class="navbar-brand"><i class="bi bi-cup-hot-fill"></i></a>
+        <a class="navbar-brand fs-2" href="https://dineilie.github.io/Snake-Game/">Coding Challenges</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Browse More
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li>
+                  <a class="dropdown-item" href="#">Algorithm Visualizer</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://dineilie.github.io/Snake-Game/">Snake</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://dineilie.github.io/Simon-Game/">Simon</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="fadeLeft">
           <!-- Re\Start Game -->
-          <button
-            type="button"
-            class="btn game-btn btn-outline-danger me-2"
-            id="restart"
-          >
+          <button type="button" class="btn game-btn btn-outline-danger me-2" id="restart">
             <i class="bi bi-arrow-repeat"></i>
           </button>
-          <button
-            type="button"
-            class="btn game-btn btn-success me-2"
-            id="start"
-          >
+          <button type="button" class="btn game-btn btn-success me-2" id="start">
             Start <i class="bi bi-play-fill"></i>
           </button>
 
@@ -104,16 +63,9 @@
             </button>
 
             <!-- Un/Mute -->
-            <input
-              type="checkbox"
-              class="btn-check game-btn"
-              checked
-              id="muteButton"
-              autocomplete="off"
-            />
-            <label class="btn btn-outline-dark" for="muteButton" id="mute"
-              ><i class="bi bi-volume-down-fill"></i></label
-            ><br />
+            <input type="checkbox" class="btn-check game-btn" checked id="muteButton" autocomplete="off" />
+            <label class="btn btn-outline-dark" for="muteButton" id="mute"><i
+                class="bi bi-volume-down-fill"></i></label><br />
 
             <!-- Down -->
             <button type="button" class="btn btn-dark game-btn" id="up">
@@ -122,132 +74,58 @@
           </div>
 
           <!-- Difficulty -->
-          <div
-            class="btn-group text-end"
-            role="group"
-            aria-label="Basic radio toggle button group"
-          >
-            <button
-              type="button"
-              class="btn btn-dark"
-              data-bs-toggle="modal"
-              data-bs-target="#difficultyPopup"
-            >
-              Difficulty
+          <div class="btn-group text-end" role="group" aria-label="Basic radio toggle button group">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#difficultyPopup">
+              <i class="bi bi-question-lg"></i>
             </button>
 
-            <input
-              type="radio"
-              class="btn-check game-btn"
-              name="btnradio"
-              id="btnradio1"
-              autocomplete="off"
-              checked
-            />
+            <input type="radio" class="btn-check game-btn" name="btnradio" id="btnradio1" autocomplete="off" checked />
             <label class="btn btn-dark" for="btnradio1">Easy</label>
 
-            <input
-              type="radio"
-              class="btn-check game-btn"
-              name="btnradio"
-              id="btnradio2"
-              autocomplete="off"
-            />
+            <input type="radio" class="btn-check game-btn" name="btnradio" id="btnradio2" autocomplete="off" />
             <label class="btn btn-dark" for="btnradio2">Medium</label>
 
-            <input
-              type="radio"
-              class="btn-check game-btn"
-              name="btnradio"
-              id="btnradio3"
-              autocomplete="off"
-            />
+            <input type="radio" class="btn-check game-btn" name="btnradio" id="btnradio3" autocomplete="off" />
             <label class="btn btn-dark" for="btnradio3">Hard</label>
           </div>
-        </nav>
-      </div>
-    </section>
-
-    <!-- Title & Information -->
-    <section>
-      <div class="container">
-        <!-- Game Title -->
-        <h1 id="level-title" class="text-center">Snake Game</h1>
-
-        <!-- Game Menu -->
-        <div
-          class="modal fade"
-          id="difficultyPopup"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Information</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <p>
-                  Snake is a sub-genre of action video games where the player
-                  maneuvers the end of a growing snake. The player must keep the
-                  snake from colliding with itself, which gets harder as the
-                  snake lengthens.<br /><br />
-                </p>
-                <h2>How to play:</h2>
-                <br />
-                <p>
-                  By using the
-                  <span style="font-weight: bold">Arrow Keys</span>, the player
-                  maneuvers the snake while consuming apples.<span
-                    style="color: red"
-                  >
-                    Red</span
-                  >
-                  apples will increase the level and the snake's length while
-                  <span style="color: blue"> Blue</span> apples will decrease
-                  the level and keep the length.<br /><br />
-                  <span style="color: goldenrod"> Yellow</span> apples will
-                  increase the snake's speed.
-                </p>
-                <h2>Difficulties:</h2>
-                <br />
-                <p>
-                  Easy - the game is over only when the snake's head is touching
-                  itself.<br /><br />
-                  Medium - the snake's speed is increased, also bad apples may
-                  occur.<br /><br />
-                  Hard - the game is over by touching the edges of the board.
-                </p>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
+      </nav>
+    </div>
+  </section>
 
-        <div class="row">
-          <div class="collapse" id="difficultyPopup">
-            <div class="card card-body">
+  <!-- Title & Information -->
+  <section>
+    <div class="container">
+      <!-- Game Title -->
+      <h1 id="level-title" class="text-center fadeDown">Snake Game</h1>
+
+      <!-- Game Menu -->
+      <div class="modal fade" id="difficultyPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Information</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
               <p>
                 Snake is a sub-genre of action video games where the player
-                maneuvers the end of a growing line, often themed as a snake.
-                The player must keep the snake from colliding with both other
-                obstacles and itself, which gets harder as the snake
-                lengthens.<br /><br />
+                maneuvers the end of a growing snake. The player must keep the
+                snake from colliding with itself, which gets harder as the
+                snake lengthens.<br /><br />
+              </p>
+              <h2>How to play:</h2>
+              <br />
+              <p>
+                By using the
+                <span style="font-weight: bold">Arrow Keys</span>, the player
+                maneuvers the snake while consuming apples.<span style="color: red">
+                  Red</span>
+                apples will increase the level and the snake's length while
+                <span style="color: blue"> Blue</span> apples will decrease
+                the level and keep the length.<br /><br />
+                <span style="color: goldenrod"> Yellow</span> apples will
+                increase the snake's speed.
               </p>
               <h2>Difficulties:</h2>
               <br />
@@ -259,45 +137,64 @@
                 Hard - the game is over by touching the edges of the board.
               </p>
             </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Game Board -->
-    <section>
-      <div id="game">
-        <canvas
-          id="world"
-          height="480"
-          width="640"
-          class="shadow border border-1"
-        ></canvas>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <section>
-      <footer id="footer">
-        <div class="container text-center">
-          <p class="text-center">© Copyright Snake Game - by Din Eilie</p>
+      <div class="row">
+        <div class="collapse" id="difficultyPopup">
+          <div class="card card-body">
+            <p>
+              Snake is a sub-genre of action video games where the player
+              maneuvers the end of a growing line, often themed as a snake.
+              The player must keep the snake from colliding with both other
+              obstacles and itself, which gets harder as the snake
+              lengthens.<br /><br />
+            </p>
+            <h2>Difficulties:</h2>
+            <br />
+            <p>
+              Easy - the game is over only when the snake's head is touching
+              itself.<br /><br />
+              Medium - the snake's speed is increased, also bad apples may
+              occur.<br /><br />
+              Hard - the game is over by touching the edges of the board.
+            </p>
+          </div>
         </div>
-      </footer>
-    </section>
-  </body>
-
-  <!-- Scripts -->
-  <section>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.js"
-      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"
-    ></script>
-    <script src="snake.js"></script>
+      </div>
+    </div>
   </section>
+
+  <!-- Game Board -->
+  <section>
+    <div id="game">
+      <canvas id="world" height="480" width="640" class="shadow border border-1 fadeIn"></canvas>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section>
+    <footer id="footer">
+      <div class="container text-center">
+        <p class="text-center fadeUp">© Copyright Snake Game - by Din Eilie</p>
+      </div>
+    </footer>
+  </section>
+</body>
+
+<!-- Scripts -->
+<section>
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="snake.js"></script>
+</section>
+
 </html>
