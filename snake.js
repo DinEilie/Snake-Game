@@ -402,6 +402,7 @@ $(".game-btn").click(function () {
       $("#start").html('Pause <i class="bi bi-pause-fill"></i>');
       $("#restart").fadeToggle(200);
       $("#restart").addClass("disabled");
+      gameStart();
     } else {
       if (isPaused) {
         isPaused = false;
@@ -411,7 +412,6 @@ $(".game-btn").click(function () {
         $("#start").html('Resume <i class="bi bi-play-fill"></i>');
       }
     }
-    gameStart();
   } else if (this.id == "restart") {
     $("#start").addClass("disabled");
     $("#restart").addClass("disabled");
